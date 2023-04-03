@@ -67,10 +67,10 @@ function App() {
     <div>
       {/*Búscador*/}
       {/*onSubmit permite que permite a la función*/}
-      <form className="container" onSubmit={buscarTrailer}>
+      <form className="container caja-texto" onSubmit={buscarTrailer}>
         {/*onChange permite escuchar la información que se ingrese en la caja de texto*/}
-        <input type="text" placeholder="Buscar..." onChange={(e)=> setSearchKey(e.target.value)}/>
-        <button className="btn btn-primary">
+        <input className="input-buscador" type="text" placeholder="Buscar..." onChange={(e)=> setSearchKey(e.target.value)}/>
+        <button className="boton-buscador btn btn-primary">
             Buscar
         </button>
       </form>
