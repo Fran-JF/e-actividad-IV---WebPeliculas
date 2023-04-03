@@ -3,3 +3,190 @@ body{
     color: white;
 }
 
+/*!Menu de Navegación*/
+.navegador{
+    background-color: rgb(134, 24, 4);
+    display: flex;
+    height: 115px;
+    width: 100vw;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logotipo{
+    padding: 0 80px;
+    max-width: 100%;
+    height: auto;
+}
+
+.secciones{
+    list-style: none;
+    display: flex;
+    margin-right: 100px;
+}
+
+.secciones li{
+    border-radius: 3px;
+    margin: 0 15px;
+}
+
+.secciones li a{
+    padding: 7px 20px;
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+    display: block;
+    font-size: 25px;
+}
+
+.secciones li:hover, li.activo{
+    background-color: rgb(0, 0, 0);
+    transition: .5s;
+}
+
+.boton{
+    font-size: 50px;
+    cursor: pointer;
+    color: white;
+    display: none;
+    margin-right: 30px;
+}
+
+
+ul.mostrar{
+    top: 65px;
+}
+
+@media screen and (max-width: 952px){
+    .secciones li a{
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 858px){
+    .boton{
+       display: inline-flex; 
+    }
+    .navegador{
+        height: 65px;
+    }
+    .secciones li{
+        margin: 30px 0 0 0;
+        line-height: 30px;
+    }
+    .secciones li:hover{
+        background: none;
+    }
+    .secciones{
+        width: 100vw;
+        height: calc(100%-65px);
+        position: fixed;
+        background-color: rgb(0, 0, 0);
+        top: -100vh;
+        transition: all -4s;
+        flex-direction: column;
+        text-align: center;        
+    }
+    .secciones li a{
+        color: white;
+        font-weight: bold;
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+    .secciones li a:hover{
+        color: black;
+        background-color: white;
+    }
+    .logotipo{
+        padding-left: 35px;
+    }
+}
+
+
+@media screen and (max-whidth: 858px) and (orientation: landscape){
+    .secciones li{
+        margin: 5px 0 0 0;
+    }
+    .secciones {
+        overflow: scroll;
+        height: calc(100%-65px);
+    }
+}
+
+/*!Footer*/
+.contenedor6{
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    padding: 2rem 8%;
+    background-color: rgb(53, 11, 4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+}
+
+/*Ajustes del logo*/
+.logo-footer{
+    height: 80px;
+    margin-bottom: 1rem;
+}
+
+/*Ajustes de  los contenedores*/
+.iconos-contenedor, .menu-contenedor{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+/*Estilos de los iconos*/
+.icon{
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+    border: 1px solid white;
+    background-image: url(../src/img/logo-cine.png);
+    background-position: center;
+    background-size: 40%;
+    background-repeat: no-repeat;
+    margin: 1rem;
+}
+
+/*Intereactividad e imÃ¡genes*/
+.icon:hover{
+    background-color: black;
+    filter: invert(1);
+}
+.icon:nth-of-type(2){
+    background-image: url(../src/img/intagram-icon.png);
+}
+.icon:nth-of-type(3){
+    background-image: url(../src/img/YouTube-logo.png);
+}
+.icon:nth-of-type(4){
+    background-image: url(../src/img/twitter-logo.png);
+}
+
+.menu-contenedor{
+    list-style-type: none;
+    color: white;
+    font-size: 18px;
+}
+
+/*ConfiguraciÃ³n de los apartados del menu*/
+.item-menu{
+    margin: 1rem 1.5rem;
+    cursor: pointer;
+    opacity: 0.6;
+}
+.item-menu:hover{
+    opacity: 1;
+}
+.copyright{
+    color: white;
+    opacity: 0.3;
+    text-align: center;
+}

@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import YouTube from 'react-youtube';
 import './App.css';
+// Imagen del logo
+import logo from "../src/img/logo-cine.png";
 
 function App() {
   //! Declaramos las constantes para hacer las peticiones
@@ -44,6 +46,15 @@ function App() {
   setMovie(results[0])
   }
 
+  //! Función para buscar peliculas
+  //Filtro para buscar una key y a traves de ella encontrar el trailer correspondiente
+  const buscarTrailer=(e)=>{
+    e.preventDefault()
+    //pedimos a la funcion la variable de estado para capturar el id de la pelicula a buscar
+    buscarPeliculas(searchkey)
+  }
+
+
   //! Montamos el componente a renderizar
   useEffect(()=>{
     buscarPeliculas();
@@ -53,6 +64,17 @@ function App() {
   //! Renderización
   return (
   <body>
+    <div>
+      {/*Búscador*/}
+      {/*onSubmit permite que permite a la función*/}
+      <form className="container" onSubmit={buscarTrailer}>
+        {/*onChange permite escuchar la información que se ingrese en la caja de texto*/}
+        <input type="text" placeholder="Buscar..." onChange={(e)=> setSearchKey(e.target.value)}/>
+        <button className="btn btn-primary">
+            Buscar
+        </button>
+      </form>
+    </div>
     <div>
       {/*Contenedor de todos los poster de las peliculas*/}
       <div className="container mt-3">
@@ -71,7 +93,7 @@ function App() {
         <section class="contenedor6">
             <footer class="footer">
                 {/*Logo del footer*/}
-                <img src="" alt="logo chevroford" class="logo-footer"></img>
+                <img src={logo} alt="logo cineLatino" class="logo-footer"></img>
                 {/*Contenedor de los iconos*/}
                 <div class="iconos-contenedor">
                     <a href="#" class="icon"></a>
