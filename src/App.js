@@ -1,5 +1,5 @@
 // Realizamos las importaciones necesarias
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import YouTube from 'react-youtube';
 import './App.css';
@@ -16,17 +16,17 @@ function App() {
 
   //! Creacion de variables de estado
   // Constante para la peticion a la API y trater la colleccion para trabajarla
-  const [peliculas, colpeliculas] = useState([]);
+  const [movies, setMovies] = useState([]);
   // Obtener información de la caja de texto
-  const [buscarLlave, colLlave] = useState("");
+  const [searchkey, setSearchKey] = useState("");
   // Constantes para el switch del trailer (encendido, apagado)
-  const [trailer, colTrailer] = useState(null);
-  const [pelicula, colPelicula] = useState({title: "Cargando Peliculas"});
-  const [reproducir, colReproducir] = useState(false);
+  const [trailer, setTrailer] = useState(null);
+  const [movie, setMovie] = useState({title: "Cargando Peliculas"});
+  const [playing, setPlaying] = useState(false);
 
   //! Función para hacer la petición get y traer la colección peliculas de la API
-  const buscarPeliculas = async(buscarLlave) =>{
-    const type = buscarLlave ? "buscar" : "encontrar";
+  const buscarPeliculas = async(searchkey) =>{
+    const type = searchkey ? "search" : "discover"
     //Creamos una constante donde hacesmos una destructuración rápida
     const {data: {results},
     //Petición a la API en donde le pasamos la endpoint (concatenamos)
@@ -34,21 +34,64 @@ function App() {
     //Enviamos parametros a la API
     params: {
       api_key: API_KEY, // validación
-      query: buscarLlave // búsqueda para filtrar
+      query: searchkey, // búsqueda para filtrar
     },
   });
 
   // Guardamos los resultados en la variable de estado
-  colpeliculas(results)
+  setMovies(results)
   // Establecemos la posición (de la colección queremos el primer resultado)
-  colpeliculas(results[0])
+  setMovie(results[0])
   }
 
+  //! Montamos el componente a renderizar
+  useEffect(()=>{
+    buscarPeliculas();
+    // [] Condición dependencias o no dependencias
+  },[])
 
+  //! Renderización
   return (
+  <body>
     <div>
-
+      {/*Contenedor de todos los poster de las peliculas*/}
+      <div className="container mt-3">
+        {/*Renderizado*/}
+        <div className="row">
+          {movies.map((movie)=>(
+            <div key={movie.id} className="container-imagen col-md-3 mb-3">
+              <img src={`${URL_IMAGEN + movie.poster_path}`} alt="Poster de la película" height={"90%"} width="100%"></img>
+              <h4 className="text-center">{movie.title}</h4>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
+    {/*Sección (Footer)*/}
+        <section class="contenedor6">
+            <footer class="footer">
+                {/*Logo del footer*/}
+                <img src="" alt="logo chevroford" class="logo-footer"></img>
+                {/*Contenedor de los iconos*/}
+                <div class="iconos-contenedor">
+                    <a href="#" class="icon"></a>
+                    <a href="#" class="icon"></a>
+                    <a href="#" class="icon"></a>
+                    <a href="#" class="icon"></a>
+                </div>
+                {/*Lista con los parametros del footer*/}
+                <ul class="menu-contenedor">
+                    <li class="item-menu">Cookies</li>
+                    <li class="item-menu">Privacy</li>
+                    <li class="item-menu">Refounds</li>
+                    <li class="item-menu">Autor: José Uzcátegui</li>
+                    <li class="item-menu">Ing. Computación</li>
+                </ul>
+                {/*<Copyright del footer*/}
+                <span class="copyright">2022, UVM. Todos los derechos reservados</span>
+            </footer>
+        </section>
+  </body>  
   );
 }
 
