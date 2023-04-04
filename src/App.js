@@ -46,7 +46,7 @@ function App() {
   setMovie(results[0])
 
   //Le decimos que de los resultados de la colecion del primero devuelva su id
-    if (results.lenght) {
+    if (results.length) {
       await buscarPelicula(results[0].id)
     } 
   }
@@ -91,6 +91,7 @@ function App() {
 
     //Le decimos a la variable de estados que guarde lo que viene en data
     setMovie(data)
+    console.log(trailer)
   }
 
   // Funcion al hacer click en una pelicula
@@ -117,15 +118,74 @@ function App() {
         </button>
       </form>
     </div>
+
+    <div className="container-banner">
+        <main>
+          {movie ? (
+            <div
+              className="viewtrailer"
+              style={{
+                backgroundImage: `url("${IMAGEN_PATH}${movie.backdrop_path}")`,
+              }}
+            >
+              {playing ? (
+                <>
+                  <YouTube
+                    videoId={trailer.key}
+                    className="reproductor container"
+                    containerClassName={"youtube-container"}
+                    opts={{
+                      width: "100%",
+                      height: "100%",
+                      playerVars: {
+                        autoplay: 1,
+                        controls: 0,
+                        cc_load_policy: 0,
+                        fs: 0,
+                        iv_load_policy: 0,
+                        modestbranding: 0,
+                        rel: 0,
+                        showinfo: 0,
+                      },
+                    }}
+                  />
+                  <button onClick={() => setPlaying(false)} className="boton-banner">
+                    Cerrar
+                  </button>
+                </>
+              ) : (
+                <div className="container">
+                  <div className="">
+                    {trailer ? (
+                      <button
+                        className="boton-banner"
+                        onClick={() => setPlaying(true)}
+                        type="button"
+                      >
+                        Reproducir
+                      </button>
+                    ) : (
+                      "Lo sentimos, el trailer no esta disponible"                      
+                    )}
+                    <h1 className="text-white">{movie.title}</h1>
+                    <p className="text-white">{movie.overview}</p>
+                  </div>
+                </div>
+              )}
+            </div>
+          ) : null}
+        </main>
+      </div>
+
     <div>
       {/*Contenedor de todos los poster de las peliculas*/}
       <div className="container mt-3">
         {/*Renderizado*/}
         <div className="row">
           {movies.map((movie)=>(
-            <div key={movie.id} className="container-imagen col-md-3 mb-3">
-              <img src={`${URL_IMAGEN + movie.poster_path}`} alt="Poster de la película" height={"90%"} width="100%"></img>
-              <h4 className="text-center">{movie.title}</h4>
+            <div key={movie.id} className="container-imagen col-md-3 mb-3 imagen-poster" onClick={()=> selecPelicula(movie)}>
+              <img className="imagen-poster" src={`${URL_IMAGEN + movie.poster_path}`} alt="Poster de la película" height={"90%"} width="100%"></img>
+              <h4 className="text-center texto-poster">{movie.title}</h4>
             </div>
           ))}
         </div>
