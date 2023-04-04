@@ -44,6 +44,11 @@ function App() {
   setMovies(results)
   // Establecemos la posición (de la colección queremos el primer resultado)
   setMovie(results[0])
+
+  //Le decimos que de los resultados de la colecion del primero devuelva su id
+    if (results.lenght) {
+      await buscarPelicula(results[0].id)
+    } 
   }
 
   //! Función para buscar peliculas
@@ -75,9 +80,27 @@ function App() {
     //Validamos los datos de la pelicula
     if (data.videos && data.videos.results) {
       // Gurdamos los resultados de la busqueda en una variable
-      const trailer = data.videos.results
+      //utilizamos el metodo find para buscar dentro del arreglo (sin modificar, creando uno nuevo)
+      const trailer = data.videos.results.find(
+        // cuando encontremos un campo official trailer lo guardamos dentro del trailer
+        (vid) => vid.name === "Official Trailer" 
+      );
+      // Hacemos una validacion con valores ternarios, si el tyrailer existe nos traera el primer resultado
+      setTrailer(trailer ? trailer : data.videos.results[0])
     }
 
+    //Le decimos a la variable de estados que guarde lo que viene en data
+    setMovie(data)
+  }
+
+  // Funcion al hacer click en una pelicula
+  const selecPelicula = async(movie)=>{
+    //buscamos la pelicula por el id
+    buscarPelicula(movie.id)
+    //Guardamos la pelicula
+    setMovie(movie)
+    // Movemos al usuario al banner de la pagina
+    window.scrollTo(0,0)
   }
 
   //! Renderización
