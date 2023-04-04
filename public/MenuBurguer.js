@@ -1,3 +1,4 @@
+//!Funcion para el menu hamburguesa
 addEventListener(`DOMContentLoaded`,()=>{
     const boton = document.querySelector(".boton")
     if(boton){
@@ -7,3 +8,4 @@ addEventListener(`DOMContentLoaded`,()=>{
         })
     }
 })
+

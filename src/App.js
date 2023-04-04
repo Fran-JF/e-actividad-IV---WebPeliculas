@@ -104,9 +104,15 @@ function App() {
     window.scrollTo(0,0)
   }
 
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  
+    const handleDarkMode = () => {
+      setIsDarkMode(!isDarkMode);
+    };
+
   //! Renderización
   return (
-  <body>
+  <body className={isDarkMode ? "darkmode" : ""}>
     <div>
       {/*Búscador*/}
       {/*onSubmit permite que permite a la función*/}
@@ -116,11 +122,18 @@ function App() {
         <button className="boton-buscador btn btn-primary">
             Buscar
         </button>
+      {/*Botón para cambiar de modo*/}
+      <button className="bdark" id="bdark" onClick={handleDarkMode}>
+        Modo
+      </button>
       </form>
     </div>
 
     <div className="container-banner">
+      {/*Banner interactivo y reproductor*/}
         <main>
+        {/*rederizacion condicional donde utilizamos operadores ternarios bajo una condicional */}
+        {/*Si movie tiene un valor, se muestra el contenido del componente. Si movie no tiene un valor, no se muestra nada.*/}
           {movie ? (
             <div
               className="viewtrailer"
