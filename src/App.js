@@ -61,6 +61,25 @@ function App() {
     // [] Condición dependencias o no dependencias
   },[])
 
+  //! Función para buscar una pelicula en especifico
+  // filtra la pelicula que selecionemos, peticion de un solo objeto
+
+  const buscarPelicula= async(id)=>{
+    //destrucruramos la data, colocamos la peticion como en la doc. y enviamos un objeto
+    const {data} = await axios.get(`${API_URL}/movie/${id}`,{
+      params:{
+        api_key: API_KEY,
+        append_to_response:"videos"
+      }
+    })
+    //Validamos los datos de la pelicula
+    if (data.videos && data.videos.results) {
+      // Gurdamos los resultados de la busqueda en una variable
+      const trailer = data.videos.results
+    }
+
+  }
+
   //! Renderización
   return (
   <body>
