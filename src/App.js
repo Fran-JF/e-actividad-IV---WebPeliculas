@@ -110,6 +110,7 @@ function App() {
       setIsDarkMode(!isDarkMode);
     };
 
+    
   //! Renderización
   return (
   <body className={isDarkMode ? "darkmode" : ""}>
@@ -181,7 +182,10 @@ function App() {
                       "Lo sentimos, el trailer no esta disponible"                      
                     )}
                     <h1 className="text-white">{movie.title}</h1>
+                    <h4 className="text-white">{movie.tagline}</h4>
                     <p className="text-white">{movie.overview}</p>
+                    <h4 className="puntuacion text-white">{movie.vote_average}</h4>
+                    <h5 className="fecha-estreno text-white">Fecha de Estreno: {movie.release_date}</h5>
                   </div>
                 </div>
               )}

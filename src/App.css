@@ -26,6 +26,13 @@ body .darkmode{
     background-color: rgb(88, 14, 1);
 }
 
+@media (max-width: 768px) {   
+    .bdark {
+      padding: 8px;
+      font-size: 14px;
+    }
+  }
+
 /*!Menu de Navegación*/
 .navegador{
     background-color: rgb(134, 24, 4);
@@ -284,7 +291,7 @@ ul.mostrar{
   }
 
 .boton-banner{
-    background-color: #0505059d;    
+    background-color: rgba(134, 23, 4, 0.651);    
     color: white;
     outline: none;
     border-radius: 25px;
@@ -298,7 +305,7 @@ ul.mostrar{
 }
 
   .boton-banner:hover{
-    background-color: rgb(134, 24, 4);
+    background-color: rgb(212, 2, 2);
   }
   
 .reproductor{
@@ -324,3 +331,14 @@ ul.mostrar{
     padding-bottom: 70px;
 }
 
+ .puntuacion{
+    background-color: black;
+    color: white;
+    display: inline;
+    padding: 5px 20px;
+    border-radius: 10px;
+ }
+
+ .fecha-estreno{
+    margin-top: 20px;
+ }
